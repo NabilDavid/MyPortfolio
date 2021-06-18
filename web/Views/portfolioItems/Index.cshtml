@@ -1,0 +1,55 @@
+﻿@model IEnumerable<core.Entities.portfolioItem>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+
+
+
+<div style="margin:160px;">
+    <p>
+        <a asp-action="Create" class="btn btn-outline-info">Create New</a>
+    </p>
+    <table class="table  table-hover table-striped table-striped table-bordered">
+        <thead>
+            <tr style="text-align:center">
+                <th>
+                    @Html.DisplayNameFor(model => model.projectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.projectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        <img style="width:50px;height:50px;" src="~/img/portfolio/@item.imageUrl" />
+                       
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("", "Edit", new { id = item.Id }, new { @class = "fas fa-edit" })
+                        @Html.ActionLink("", "Details", new { id = item.Id }, new { @class = "fas fa-eye" })
+                        @Html.ActionLink("", "Delete", new { id = item.Id }, new { @class = "fas fa-trash" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
